@@ -1,0 +1,6 @@
+br/unipar/calculadora/bonus/domain/CalculadoraBonus.class
+br/unipar/calculadora/bonus/Main.class
+br/unipar/calculadora/bonus/domain/Colaborador.class
+br/unipar/calculadora/bonus/domain/Gerente.class
+br/unipar/calculadora/bonus/domain/Funcionario.class
+br/unipar/calculadora/bonus/domain/Diretor.class
