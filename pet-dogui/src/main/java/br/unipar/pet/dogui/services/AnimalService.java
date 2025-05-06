@@ -1,0 +1,36 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package br.unipar.pet.dogui.services;
+
+import br.unipar.pet.dogui.domain.Animal;
+import br.unipar.pet.dogui.exceptions.BusinessException;
+import br.unipar.pet.dogui.repositories.AnimalRepository;
+
+/**
+ *
+ * @author andersonbosing
+ */
+public class AnimalService {
+    
+    private AnimalRepository animalRepository;
+    
+    public AnimalService(){
+        this.animalRepository = new AnimalRepository();
+    }
+    
+    public Animal insert(Animal animal) throws BusinessException {
+        
+        if (animal == null) throw new BusinessException("Informe os Dados do Animal");
+        if (animal.getNome() == null) throw new BusinessException("Informe o Nome do Animal");
+        if (animal.getNome().trim().isEmpty()) throw new BusinessException("Informe o Nome do Animal");
+        if (animal.getNome().length() < 3) throw new BusinessException("O Nome deve ter no minimo 3 caracteres.");
+        if (animal.getNome().length() > 60) throw new BusinessException("O Nome não deve possuir mais do que 60 caracteres");
+        
+        animal = (Animal) animalRepository.insert(animal);
+        
+        return animal;
+    }
+    
+}

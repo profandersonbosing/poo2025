@@ -1,0 +1,9 @@
+br/unipar/pet/dogui/services/AnimalService.class
+br/unipar/pet/dogui/Main.class
+br/unipar/pet/dogui/infraestructure/ConnectionFactory.class
+br/unipar/pet/dogui/repositories/Repository.class
+br/unipar/pet/dogui/exceptions/BusinessException.class
+br/unipar/pet/dogui/domain/PorteEnum.class
+br/unipar/pet/dogui/domain/Animal.class
+br/unipar/pet/dogui/repositories/AnimalRespository.class
+br/unipar/pet/dogui/domain/BaseEntity.class
