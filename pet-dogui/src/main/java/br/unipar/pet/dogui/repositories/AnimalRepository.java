@@ -4,45 +4,18 @@
  */
 package br.unipar.pet.dogui.repositories;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import br.unipar.pet.dogui.domain.Animal;
 import java.util.List;
-
 
 /**
  *
  * @author andersonbosing
  */
-public class AnimalRepository implements Repository {
+public interface AnimalRepository {
+ 
+    public Animal insert(Animal Animal);
+    public List<Animal> findAll();
+    public Animal update(Animal Animal);
+    public void delete(Integer id);
     
-    private static final String INSERT =
-            "insert into animal (dt_insercao, dt_atualizacao, deleted, nome, porte)\n" +
-            "values(?, ?, ?, ?, ?);";
-
-    @Override
-    public Object insert(Object object) {
-        
-        Connection conn = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-        
-        
-        
-    }
-
-    @Override
-    public List<Object> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Object update(Object object) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

@@ -6,7 +6,7 @@ package br.unipar.pet.dogui.services;
 
 import br.unipar.pet.dogui.domain.Animal;
 import br.unipar.pet.dogui.exceptions.BusinessException;
-import br.unipar.pet.dogui.repositories.AnimalRepository;
+import br.unipar.pet.dogui.repositories.AnimalRepositoryImp;
 
 /**
  *
@@ -14,10 +14,10 @@ import br.unipar.pet.dogui.repositories.AnimalRepository;
  */
 public class AnimalService {
     
-    private AnimalRepository animalRepository;
+    private AnimalRepositoryImp animalRepository;
     
     public AnimalService(){
-        this.animalRepository = new AnimalRepository();
+        this.animalRepository = new AnimalRepositoryImp();
     }
     
     public Animal insert(Animal animal) throws BusinessException {
