@@ -8,6 +8,7 @@ import br.unipar.pet.dogui.domain.Animal;
 import br.unipar.pet.dogui.exceptions.BusinessException;
 import br.unipar.pet.dogui.repositories.AnimalRepositoryImp;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -33,6 +34,10 @@ public class AnimalService {
         animal = (Animal) animalRepository.insert(animal);
         
         return animal;
+    }
+    
+    public List<Animal> findAll() throws SQLException {
+        return animalRepository.findAll();
     }
     
 }

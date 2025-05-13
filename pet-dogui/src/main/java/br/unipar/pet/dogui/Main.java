@@ -7,6 +7,7 @@ package br.unipar.pet.dogui;
 import br.unipar.pet.dogui.domain.Animal;
 import br.unipar.pet.dogui.domain.PorteEnum;
 import br.unipar.pet.dogui.services.AnimalService;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 
@@ -31,13 +32,16 @@ public class Main {
 
             
             Animal animal = new Animal();
-            animal.setNome("Rex");
+            animal.setNome("Hunter");
             animal.setPorte(PorteEnum.PEQUENO);
 
             AnimalService animalService = new AnimalService();
             animal = animalService.insert(animal);
 
             JOptionPane.showMessageDialog(null, animal.toString());
+            
+            List<Animal> resultado = animalService.findAll();
+            JOptionPane.showMessageDialog(null, resultado.toString());
             
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(null, exception.toString());
