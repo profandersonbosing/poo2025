@@ -4,6 +4,11 @@
  */
 package br.unipar.pet.dogui;
 
+import br.unipar.pet.dogui.domain.Animal;
+import br.unipar.pet.dogui.domain.PorteEnum;
+import br.unipar.pet.dogui.services.AnimalService;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -13,7 +18,30 @@ public class Main {
 
     public static void main(String[] args) {
         
-        
+        try {
+            
+//            CREATE TABLE animal (
+//                id SERIAL PRIMARY key not null,
+//                dt_insercao TIMESTAMP not null,
+//                dt_atualizacao TIMESTAMP not null,
+//                deleted BOOLEAN default true not null,
+//                nome VARCHAR(60) not null,
+//                porte VARCHAR(10) not null
+//            );
+
+            
+            Animal animal = new Animal();
+            animal.setNome("Rex");
+            animal.setPorte(PorteEnum.PEQUENO);
+
+            AnimalService animalService = new AnimalService();
+            animal = animalService.insert(animal);
+
+            JOptionPane.showMessageDialog(null, animal.toString());
+            
+        } catch (Exception exception) {
+            JOptionPane.showMessageDialog(null, exception.toString());
+        }
     }
     
 }

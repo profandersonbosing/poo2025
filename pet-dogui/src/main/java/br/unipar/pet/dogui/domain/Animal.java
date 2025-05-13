@@ -29,4 +29,10 @@ public class Animal extends BaseEntity {
     public void setPorte(PorteEnum porte) {
         this.porte = porte;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" + "nome=" + nome + ", porte=" + porte + '}'
+                +super.toString();
+    }
 }

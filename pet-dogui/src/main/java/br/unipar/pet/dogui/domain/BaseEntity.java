@@ -48,5 +48,9 @@ public abstract class BaseEntity {
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
-    
+
+    @Override
+    public String toString() {
+        return "BaseEntity{" + "id=" + id + ", dtInsercao=" + dtInsercao + ", dtAtualizacao=" + dtAtualizacao + ", deleted=" + deleted + '}';
+    }
 }

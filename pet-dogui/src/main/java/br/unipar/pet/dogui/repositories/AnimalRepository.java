@@ -5,6 +5,7 @@
 package br.unipar.pet.dogui.repositories;
 
 import br.unipar.pet.dogui.domain.Animal;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -13,9 +14,9 @@ import java.util.List;
  */
 public interface AnimalRepository {
  
-    public Animal insert(Animal Animal);
-    public List<Animal> findAll();
-    public Animal update(Animal Animal);
-    public void delete(Integer id);
+    public Animal insert(Animal animal) throws SQLException;
+    public List<Animal> findAll() throws SQLException;
+    public Animal update(Animal animal) throws SQLException;
+    public void delete(Integer id) throws SQLException;
     
 }

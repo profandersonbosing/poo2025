@@ -7,6 +7,7 @@ package br.unipar.pet.dogui.services;
 import br.unipar.pet.dogui.domain.Animal;
 import br.unipar.pet.dogui.exceptions.BusinessException;
 import br.unipar.pet.dogui.repositories.AnimalRepositoryImp;
+import java.sql.SQLException;
 
 /**
  *
@@ -20,7 +21,8 @@ public class AnimalService {
         this.animalRepository = new AnimalRepositoryImp();
     }
     
-    public Animal insert(Animal animal) throws BusinessException {
+    public Animal insert(Animal animal) throws BusinessException, 
+            SQLException {
         
         if (animal == null) throw new BusinessException("Informe os Dados do Animal");
         if (animal.getNome() == null) throw new BusinessException("Informe o Nome do Animal");
