@@ -30,7 +30,18 @@ public class AnimalRepositoryImp implements AnimalRepository {
     
     private static final String FIND_ALL =
             "SELECT id, dt_insercao, dt_atualizacao, deleted, "
-            + "nome, porte FROM animal ORDER BY id asc"; 
+            + "nome, porte FROM animal ORDER BY id asc";
+
+    private static final String FIND_BY_ID =
+            "SELECT id, dt_insercao, dt_atualizacao, deleted, "
+            + "nome, porte FROM animal WHERE id = ?";
+
+    private static final String UPDATE =
+            "UPDATE animal SET dt_atualizacao = ?, deleted = ?, "
+            + "nome = ?, porte = ? WHERE id = ?";
+
+    private static final String DELETE =
+            "UPDATE animal SET deleted = ? WHERE id = ?";
 
     @Override
     public Animal insert(Animal animal) throws SQLException {
@@ -106,12 +117,88 @@ public class AnimalRepositoryImp implements AnimalRepository {
 
     @Override
     public Animal update(Animal animal) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+
+            conn = new ConnectionFactory().getConnection();
+
+            ps = conn.prepareStatement(UPDATE);
+
+            ps.setDate(1, new java.sql.Date(new Date().getTime()));
+            ps.setBoolean(2, animal.getDeleted());
+            ps.setString(3, animal.getNome());
+            ps.setString(4, animal.getPorte().toString());
+            ps.setInt(5, animal.getId());
+
+            ps.executeUpdate();
+
+        } finally {
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
+        }
+
+        return animal;
+
     }
 
     @Override
     public void delete(Integer id) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }   
 
+        Connection conn = null;
+        PreparedStatement ps = null;
+
+        try {
+
+            conn = new ConnectionFactory().getConnection();
+
+            ps = conn.prepareStatement(DELETE);
+
+            ps.setBoolean(1, true);
+            ps.setInt(2, id);
+
+            ps.executeUpdate();
+
+        } finally {
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
+        }
+    }
+
+    @Override
+    public Animal findById(Integer id) throws SQLException {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Animal animal = null;
+
+        try {
+
+            conn = new ConnectionFactory().getConnection();
+
+            ps = conn.prepareStatement(FIND_BY_ID);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                animal = new Animal();
+                animal.setId(rs.getInt("id"));
+                animal.setNome(rs.getString("nome"));
+                animal.setPorte(PorteEnum.valueOf(rs.getString("porte")));
+                animal.setDeleted(rs.getBoolean("deleted"));
+                animal.setDtAtualizacao(rs.getDate("dt_atualizacao"));
+                animal.setDtInsercao(rs.getDate("dt_insercao"));
+            }
+
+        } finally  {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
+        }
+
+        return animal;
+    }
 }

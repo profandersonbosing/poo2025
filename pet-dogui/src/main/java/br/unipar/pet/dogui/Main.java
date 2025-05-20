@@ -42,7 +42,15 @@ public class Main {
             
             List<Animal> resultado = animalService.findAll();
             JOptionPane.showMessageDialog(null, resultado.toString());
-            
+
+            animal = animalService.findById(1);
+            JOptionPane.showMessageDialog(null, animal.toString());
+
+            animal = animalService.update(animal);
+            JOptionPane.showMessageDialog(null, animal.toString());
+
+            animalService.delete(1);
+
         } catch (Exception exception) {
             JOptionPane.showMessageDialog(null, exception.toString());
         }

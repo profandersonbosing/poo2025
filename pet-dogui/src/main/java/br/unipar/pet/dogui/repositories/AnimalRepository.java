@@ -18,5 +18,6 @@ public interface AnimalRepository {
     public List<Animal> findAll() throws SQLException;
     public Animal update(Animal animal) throws SQLException;
     public void delete(Integer id) throws SQLException;
+    public Animal findById(Integer id) throws SQLException;
     
 }
